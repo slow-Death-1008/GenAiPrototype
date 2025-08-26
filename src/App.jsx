@@ -13,7 +13,7 @@ function App() {
         <div className="absolute bottom-4 right-4 z-50">
           <ThemeBtn />
         </div>
-        <Router>
+        <Router basename="GenAiPrototype">
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
