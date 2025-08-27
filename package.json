@@ -2,7 +2,7 @@
   "name": "careerguide",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://codevoyager3.github.io/GenAiPrototype/",
+  "homepage": "https://https://CodeVoyager3.github.io/GenAiPrototype/",
   "type": "module",
   "scripts": {
     "dev": "vite",
