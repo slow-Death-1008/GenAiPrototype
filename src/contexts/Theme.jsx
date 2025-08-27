@@ -14,20 +14,18 @@ export const ThemeProvider = ({ children }) => {
         return "light";
     });
 
-    // Update <html> class when themeMode changes
     useEffect(() => {
         const root = document.documentElement;
 
         if (themeMode === "dark") {
             root.classList.add("dark");
         } else {
-            root.classList.remove("dark"); // no need to add "light"
+            root.classList.remove("dark");
         }
 
         localStorage.setItem("theme", themeMode);
     }, [themeMode]);
 
-    // Functions to switch themes
     const darkTheme = () => setThemeMode("dark");
     const lightTheme = () => setThemeMode("light");
 

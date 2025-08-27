@@ -10,7 +10,7 @@ const RightSidebar = ({ isOpen, onClose, profile, onProfileClick }) => {
 
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${
+      className={`fixed top-0 right-0 h-full w-64 bg-white z-50 dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
@@ -32,12 +32,12 @@ const RightSidebar = ({ isOpen, onClose, profile, onProfileClick }) => {
                onClick={onProfileClick}>
             <ProfileButton
               name={profile.name || 'Anonymous User'} 
-              // Step 2: Use the imported image as the fallback
+              
               image={profile.image || defaultUserImage} 
               onClick={onProfileClick}
             />
           </div>
-          {/* Add more settings options here */}
+          
         </div>
       </div>
     </div>

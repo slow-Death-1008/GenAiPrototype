@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-import Dashboard from "./Dashboard";
+import { Outlet } from "react-router-dom";
 import ProfileModal from "../components/ProfileModal";
 import RightSidebar from "../components/RightSidebar";
-import { useTheme } from "../contexts/Theme";
-import { FaBars, FaCog } from "react-icons/fa"; // Import icons for mobile buttons
+import { FaBars, FaCog } from "react-icons/fa";
+import bgVideo from "../assets/bganime3.mp4";
 
 const DashboardLayout = () => {
     const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
-    
-    // State for managing mobile sidebar visibility
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     const [profile, setProfile] = useState(() => {
@@ -24,8 +22,19 @@ const DashboardLayout = () => {
     };
 
     return (
-        <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
-            {/* Pass state to Sidebar to control its mobile visibility */}
+        <div className="relative flex h-screen font-sans text-white">
+            
+            
+            <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover opacity-30 -z-10"
+            >
+                <source src={bgVideo} type="video/mp4" />
+            </video>
+
             <Sidebar 
                 isOpen={isMobileSidebarOpen} 
                 onClose={() => setIsMobileSidebarOpen(false)}
@@ -33,8 +42,7 @@ const DashboardLayout = () => {
             />
             
             <div className="flex-1 flex flex-col overflow-hidden">
-                {/* Mobile Header */}
-                <header className="md:hidden p-4 flex justify-between items-center bg-white dark:bg-gray-800 border-b dark:border-gray-700">
+                <header className="md:hidden p-4 flex justify-between items-center bg-white/70 dark:bg-gray-800/70 border-b dark:border-gray-700 backdrop-blur-sm">
                     <button onClick={() => setIsMobileSidebarOpen(true)} className="text-gray-600 cursor-pointer dark:text-gray-300">
                         <FaBars className="w-6 h-6" />
                     </button>
@@ -44,8 +52,13 @@ const DashboardLayout = () => {
                     </button>
                 </header>
 
-                <div className="flex-1 overflow-y-auto p-4 sm:p-6">
-                    <Dashboard />
+                
+                <div
+                    className={`flex-1 overflow-y-auto ${
+                        isMobileSidebarOpen ? "z-30" : "z-50"
+                    }`}
+                >
+                    <Outlet />
                 </div>
             </div>
 
