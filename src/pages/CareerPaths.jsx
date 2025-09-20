@@ -8,8 +8,8 @@ const CareerPaths = () => {
   // This is a "guard clause". If there's no data, it returns this UI and stops.
   if (!analysisData || !analysisData.careerRecommendations) {
     return (
-      <main className="relative min-h-screen w-full flex items-center justify-center font-mono text-green-400 bg-black">
-        <div className="text-center p-8 bg-black/50 border border-green-500/30 rounded-2xl">
+      <main className="relative min-h-screen w-full flex items-center justify-center font-mono text-green-400 bg-transparent">
+        <div className="text-center p-8 bg-transparent/50 border border-green-500/30 rounded-2xl">
           <h2 className="text-2xl font-bold text-green-300 mb-4">
             Unlock Your Personalized Career Path
           </h2>
@@ -44,7 +44,7 @@ const CareerPaths = () => {
           {suitableRoles.map((role, index) => (
             <div
               key={index}
-              className="bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6 shadow-lg hover:-translate-y-1 transition-transform duration-300"
+              className="bg-transparent/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6 shadow-lg hover:-translate-y-1 transition-transform duration-300"
             >
               <div className="text-4xl mb-4">🚀</div>
               <h3 className="text-xl font-semibold mb-2 text-green-300">{role}</h3>
@@ -55,7 +55,7 @@ const CareerPaths = () => {
           ))}
         </div>
 
-        <div className="mt-12 bg-black/50 border border-green-500/30 rounded-2xl p-6">
+        <div className="mt-12 bg-transparent/50 border border-green-500/30 rounded-2xl p-6">
           <h2 className="text-2xl font-semibold text-green-300 mb-4">Recommended Skills to Improve</h2>
           <div className="flex flex-wrap gap-2">
             {skillsToImprove.map((skill, idx) => (

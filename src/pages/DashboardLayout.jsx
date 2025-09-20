@@ -248,7 +248,7 @@ const DashboardLayout = () => {
     };
 
     return (
-        <div className="relative flex h-screen font-mono text-green-400 bg-black">
+        <div className="relative flex h-screen font-mono text-green-400 bg-transparent">
             {/* Animated Background */}
             <AnimatedBackground />
             
@@ -302,7 +302,7 @@ const DashboardLayout = () => {
             />
             
             <div className="flex-1 flex flex-col overflow-hidden">
-                <header className="md:hidden p-4 flex justify-between items-center bg-black/50 border-b border-green-500/30 backdrop-blur-sm">
+                <header className="md:hidden p-4 flex justify-between items-center bg-transparent/50 border-b border-green-500/30 backdrop-blur-sm">
                     <button onClick={() => setIsMobileSidebarOpen(true)} className="text-green-400 cursor-pointer hover:text-white transition-colors text-2xl">
                         <FaBars />
                     </button>

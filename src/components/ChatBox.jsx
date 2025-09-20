@@ -84,7 +84,7 @@ const ChatBox = () => {
     };
 
     return (
-        <div className="font-mono bg-black/50 backdrop-blur-lg border border-green-500/30 text-green-400 shadow-2xl shadow-green-500/10 flex flex-col h-[70vh] rounded-2xl">
+        <div className="font-mono bg-transparent/50 backdrop-blur-lg border border-green-500/30 text-green-400 shadow-2xl shadow-green-500/10 flex flex-col h-[70vh] rounded-2xl">
             <div className="flex justify-between items-center p-4 border-b border-green-500/30">
                 <h3 className="font-bold text-lg" style={{ textShadow: '0 0 3px #39FF14' }}>
                     Chat Assistant
