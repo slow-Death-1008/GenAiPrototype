@@ -306,7 +306,6 @@ const SkillsAssessment = () => {
 
   return (
     <main className="relative min-h-screen w-full font-mono text-green-400 bg-black">
-      <div className="absolute inset-0 bg-black/60 -z-10"></div>
       <div className="relative z-10 p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center" style={{ textShadow: '0 0 5px #39FF14, 0 0 10px #39FF14' }}>
           AI-Powered Skills Assessment

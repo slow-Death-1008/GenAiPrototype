@@ -32,7 +32,7 @@ const CareerPaths = () => {
   const { suitableRoles, skillsToImprove } = analysisData.careerRecommendations;
 
   return (
-    <main className="relative min-h-screen w-full font-mono text-green-400 bg-black">
+    <main className="relative min-h-screen w-full font-mono text-green-400">
       <div className="relative z-10 p-4 sm:p-6 lg:p-8">
         <h1
           className="text-3xl sm:text-4xl font-bold mb-8 text-center"

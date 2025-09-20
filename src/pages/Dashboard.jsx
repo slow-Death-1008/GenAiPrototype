@@ -25,7 +25,6 @@ const Dashboard = () => {
 
   return (
     <main className="relative min-h-screen w-full font-mono text-green-400 bg-black">
-      <div className="absolute inset-0 bg-black/60 -z-10"></div>
 
       {/* Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center gap-8 p-4 sm:p-6 lg:p-8">
