@@ -6,6 +6,7 @@ import CareerPaths from "./pages/CareerPaths";
 import SkillsAssessment from "./pages/SkillsAssessment";
 import { AnalysisProvider } from './context/AnalysisContext';
 import './App.css';
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import { ClerkProvider } from '@clerk/clerk-react'
 import Dashboard from "./pages/Dashboard";
@@ -20,7 +21,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route 
+                path="/dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <DashboardLayout />
+                  </ProtectedRoute>
+                }
+              >
               <Route index element={<Dashboard />} />
               <Route path="career-paths" element={<CareerPaths />} />
               <Route path="skills-assessment" element={<SkillsAssessment />} />
