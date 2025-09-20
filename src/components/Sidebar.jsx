@@ -1,5 +1,6 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';  // Add this import
+import { useClerk } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
 
 
 // --- SVG Icons ---
@@ -38,7 +39,8 @@ const TimesIcon = () => (
 
 // --- Sidebar Component ---
 const Sidebar = ({ isOpen, onClose, onSettingsClick }) => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const { signOut } = useClerk();
   
 
   const navItems = [
@@ -124,7 +126,7 @@ const Sidebar = ({ isOpen, onClose, onSettingsClick }) => {
             onClick={() => {
               // If using Clerk, you would use: signOut()
               console.log('Signing out...');
-              window.location.href = '/GenAiPrototype/';
+              signOut(() => navigate('/'));
             }}
             className="flex items-center gap-4 p-3 w-full cursor-pointer rounded-lg transition-all duration-200 hover:bg-red-900/40 hover:border-red-500/30 border border-transparent group text-red-400"
           >

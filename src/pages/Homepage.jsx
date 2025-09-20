@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useUser, SignInButton } from "@clerk/clerk-react";
-
+import { useNavigate } from 'react-router-dom';
 // An advanced Typewriter component with a neon glitch effect and randomized speed.
 const NeonGlitchedTypewriter = ({ text, phrases }) => {
   const [currentText, setCurrentText] = useState('');
@@ -215,10 +215,10 @@ const InteractiveBackground = () => {
 
 // Custom Clerk Sign In Button with Neon Styling
 const CustomSignInButton = ({ isSignedIn, userName }) => {
+  const navigate = useNavigate();
   const handleNavigate = () => {
     if (isSignedIn) {
-      // User already logged in, go to dashboard
-      window.location.href = '/GenAiPrototype/dashboard';
+      navigate('/dashboard');
     }
   };
 
