@@ -24,11 +24,10 @@ const Dashboard = () => {
   ];
 
   return (
-    <main className="relative min-h-screen w-full font-mono text-green-400 bg-transparent">
-
+    <main className="relative min-h-screen w-full font-mono text-green-400 bg-black">
       {/* Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center gap-8 p-4 sm:p-6 lg:p-8">
-        <div className="w-full bg-transparent/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6 sm:p-8 text-center shadow-2xl shadow-green-500/10">
+        <div className="w-full bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6 sm:p-8 text-center shadow-2xl shadow-green-500/10">
           <h2 
             className="text-3xl sm:text-4xl font-bold mb-2 text-green-400"
             style={{ textShadow: '0 0 5px #39FF14, 0 0 10px #39FF14' }}

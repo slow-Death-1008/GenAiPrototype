@@ -172,7 +172,7 @@ const StatusIndicator = ({ status, error }) => {
   if (status === 'idle') return null;
 
   return (
-    <div className="text-sm text-center mb-6 flex items-center justify-center gap-3 p-3 bg-transparent/30 rounded-lg">
+    <div className="text-sm text-center mb-6 flex items-center justify-center gap-3 p-3 bg-black/30 rounded-lg">
       {(status === 'extracting' || status === 'analyzing') && <Spinner />}
       <span className={colorClass}>{messages[status]}</span>
     </div>
@@ -201,7 +201,7 @@ const AnalysisResult = ({ analysis }) => {
   // Fallback for non-JSON responses
   if (parsedData.rawText) {
       return (
-          <div className="bg-transparent/50 backdrop-blur-lg border border-red-500/30 p-6 rounded-lg">
+          <div className="bg-black/50 backdrop-blur-lg border border-red-500/30 p-6 rounded-lg">
               <h2 className="text-xl font-semibold text-red-400 mb-2">Could Not Parse AI Response</h2>
               <p className="text-red-400/80 mb-4">Displaying raw text from the AI:</p>
               <pre className="text-sm whitespace-pre-wrap">{parsedData.rawText}</pre>
@@ -221,7 +221,7 @@ const AnalysisResult = ({ analysis }) => {
   return (
     <div className="space-y-8">
       {/* Overall Score Section */}
-      <div className="bg-transparent/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6 text-center">
+      <div className="bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6 text-center">
         <h2 className="text-xl font-semibold text-green-300 mb-2">Overall Assessment Score</h2>
         <p className="text-6xl font-bold" style={{ color: '#39FF14', textShadow: '0 0 10px #39FF14' }}>
           {parsedData.overallScore || 'N/A'}
@@ -231,16 +231,16 @@ const AnalysisResult = ({ analysis }) => {
 
       {/* Skills Charts Section */}
       <div className="grid grid-cols-1 gap-8 justify-center items-center">
-        <div className="bg-transparent/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6">
+        <div className="bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6">
           <SkillPieChart data={techSkillsData} title="Technical Skills Proficiency" />
         </div>
-        <div className="bg-transparent/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6">
+        <div className="bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6">
           <SkillPieChart data={softSkillsData} title="Soft Skills Score" />
         </div>
       </div>
       
       {/* Career Recommendations Section */}
-      <div className="bg-transparent/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6">
+      <div className="bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6">
           <h2 className="text-2xl font-semibold text-green-300 mb-4">Career Recommendations</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -305,12 +305,12 @@ const SkillsAssessment = () => {
   const isProcessing = status === 'extracting' || status === 'analyzing';
 
   return (
-    <main className="relative min-h-screen w-full font-mono text-green-400 bg-transparent">
+    <main className="relative min-h-screen w-full font-mono text-green-400 bg-black">
       <div className="relative z-10 p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center" style={{ textShadow: '0 0 5px #39FF14, 0 0 10px #39FF14' }}>
           AI-Powered Skills Assessment
         </h1>
-        <div className="bg-transparent/50 backdrop-blur-lg border border-green-500/30 rounded-2xl shadow-2xl shadow-green-500/10 p-6 sm:p-8 mb-8">
+        <div className="bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl shadow-2xl shadow-green-500/10 p-6 sm:p-8 mb-8">
           {status !== 'success' && (
             <>
               <h2 className="text-xl font-semibold mb-2 text-green-300">Upload Your Resume</h2>
