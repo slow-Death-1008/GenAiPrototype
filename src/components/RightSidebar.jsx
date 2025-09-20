@@ -1,43 +1,69 @@
 import React from 'react';
-import ProfileButton from './ProfileButton';
-import { useTheme } from '../contexts/Theme';
 
- 
-import defaultUserImage from '../assets/user.png'; 
+// Placeholder for ProfileButton as it's in another file.
+const ProfileButton = ({ name, image, onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="flex items-center cursor-pointer gap-3 p-2 rounded-full transition-colors duration-300 hover:bg-green-900/40 border border-transparent hover:border-green-500/30 group font-mono"
+    >
+      <img 
+        src={image || 'https://placehold.co/40x40/000000/39FF14?text=P'} 
+        alt="Profile" 
+        className="w-10 h-10 rounded-full object-cover border-2 border-green-500/50 group-hover:border-green-400 transition-colors"
+      />
+      {name && (
+        <span 
+            className="text-sm text-green-300 group-hover:text-green-200"
+            style={{ textShadow: '0 0 2px #39FF14' }}
+        >
+            {name}
+        </span>
+      )}
+    </button>
+  );
+};
 
-const RightSidebar = ({ isOpen, onClose, profile, onProfileClick }) => {
-  const { themeMode } = useTheme();
 
+const RightSidebar = ({ isOpen, onClose, profile = {}, onProfileClick }) => {
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-64 bg-white z-50 dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${
+      className={`fixed top-0 right-0 h-full w-72 bg-black/80 backdrop-blur-lg border-l border-green-500/30 text-green-400 z-50 shadow-2xl shadow-green-500/10 transform transition-transform duration-300 ease-in-out font-mono ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      <div className="p-4">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-lg font-semibold dark:text-white">Settings</h2>
+      <div className="p-4 flex flex-col h-full">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-6 flex-shrink-0">
+          <h2 
+            className="text-xl font-bold"
+            style={{ textShadow: '0 0 4px #39FF14' }}
+          >
+            Settings
+          </h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-700 rounded-full"
+            className="p-2 hover:bg-green-900/40 cursor-pointer rounded-full transition-colors"
           >
-            <svg className="w-6 h-6 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
         
-        <div className="space-y-4">
-          <div className="p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
-               onClick={onProfileClick}>
+        {/* Content */}
+        <div className="space-y-4 flex-grow">
+          <div 
+            className="p-2 rounded-lg hover:bg-green-900/40 border border-transparent hover:border-green-500/30 transition-all cursor-pointer"
+            onClick={onProfileClick}
+          >
             <ProfileButton
               name={profile.name || 'Anonymous User'} 
-              
-              image={profile.image || defaultUserImage} 
+              image={profile.image || 'https://placehold.co/40x40/000000/39FF14?text=A'} 
               onClick={onProfileClick}
             />
           </div>
-          
+          {/* Add other settings items here */}
         </div>
       </div>
     </div>
@@ -45,3 +71,4 @@ const RightSidebar = ({ isOpen, onClose, profile, onProfileClick }) => {
 };
 
 export default RightSidebar;
+
