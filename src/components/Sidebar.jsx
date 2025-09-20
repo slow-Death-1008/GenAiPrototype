@@ -77,7 +77,7 @@ const Sidebar = ({ isOpen, onClose, onSettingsClick }) => {
             className="text-2xl font-bold" 
             style={{ textShadow: '0 0 5px #39FF14' }}
           >
-            <img src="logo.png" alt="Logo" />
+            <img src="/logo.png" alt="Logo" />
           </h1>
           <button onClick={onClose} className="md:hidden cursor-pointer text-green-400 hover:text-green-200">
             <TimesIcon />

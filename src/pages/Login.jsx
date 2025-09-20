@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SignIn, useUser } from '@clerk/clerk-react';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 
 const Login = () => {
   const { isSignedIn, isLoaded } = useUser();
+  const navigate = useNavigate(); // 2. Initialize useNavigate
 
-  // Redirect if already signed in
   useEffect(() => {
     if (isLoaded && isSignedIn) {
-      window.location.href = '/GenAiPrototype/dashboard';
+      navigate('/dashboard'); // 3. Use navigate instead of window.location
     }
-  }, [isSignedIn, isLoaded]);
+  }, [isSignedIn, isLoaded, navigate]);
 
   // Show loading state while Clerk loads
   if (!isLoaded) {
