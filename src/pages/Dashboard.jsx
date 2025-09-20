@@ -55,9 +55,6 @@ const Dashboard = () => {
               </li>
             ))}
           </ul>
-          <div className="w-full">
-                    <ChatBox />
-          </div>
         </div>
         
         <div className="w-full">
