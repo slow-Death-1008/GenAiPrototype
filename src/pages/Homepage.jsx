@@ -307,10 +307,10 @@ const Homepage = () => {
   const { isSignedIn, user, isLoaded } = useUser();
 
   const phrases = [
-    "Your  Skills.",
-    "Your  Career.",
-    "Your  Future.",
-    "Your  Potential.",
+    "   Your  -Skills.",
+    "   Your  -Career.",
+    "   Your  -Future.",
+    "   Your  -Potential.",
   ];
 
   // Show loading state while Clerk loads
@@ -369,7 +369,7 @@ const Homepage = () => {
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center p-4">
         <div className="flex flex-col items-center justify-center gap-10">
           {/* The advanced typewriter effect title */}
-          <NeonGlitchedTypewriter text="Elevate" phrases={phrases} />
+          <NeonGlitchedTypewriter text="Elevate   " phrases={phrases} />
 
           {/* Clerk-integrated button */}
           <CustomSignInButton 
