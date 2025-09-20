@@ -34,7 +34,7 @@ const getGroqChatCompletion = async (userMessage, analysisData) => {
         },
         body: JSON.stringify({
             messages: [{ role: 'user', content: prompt }],
-            model: 'llama3-8b-8192', // Or another model you prefer
+            model: 'llama-3.1-8b-instant', 
         }),
     });
 
