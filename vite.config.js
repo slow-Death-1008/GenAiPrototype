@@ -5,6 +5,6 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   // IMPORTANT: Change 'your-repo-name' to your repository's name
-  base: '/', 
+  base: '/GenAiPrototype', 
   plugins: [react(), tailwindcss()]
 })
