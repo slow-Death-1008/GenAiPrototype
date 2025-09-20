@@ -1,10 +1,10 @@
+import React from 'react';
+import ChatBox from '../components/ChatBox';
 
-import ChatBox from "../components/ChatBox";
-import bgVideo from '../assets/bganime3.mp4';
 
 
+// --- Main Dashboard Component ---
 const Dashboard = () => {
-  
   const guidelines = [
     {
       icon: '💬',
@@ -24,35 +24,29 @@ const Dashboard = () => {
   ];
 
   return (
-    <main className="relative min-h-screen overflow-hidden w-full font-sans text-white">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
-      >
-        <source src={bgVideo} type="video/mp4" />
-      </video>
-
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-8 p-4 sm:p-6 lg:p-8">
-        <div className="w-full bg-black/30 backdrop-blur-lg border border-gray-700 rounded-2xl p-6 sm:p-8 text-center shadow-2xl">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-teal-300 text-transparent bg-clip-text">
+    <main className="relative min-h-screen w-full font-mono text-green-400 bg-black">
+      {/* Content Container */}
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center gap-8 p-4 sm:p-6 lg:p-8">
+        <div className="w-full bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6 sm:p-8 text-center shadow-2xl shadow-green-500/10">
+          <h2 
+            className="text-3xl sm:text-4xl font-bold mb-2 text-green-400"
+            style={{ textShadow: '0 0 5px #39FF14, 0 0 10px #39FF14' }}
+          >
             Your Future, Powered by AI.
           </h2>
-          <p className="text-lg text-gray-300 mb-8">
+          <p className="text-lg text-green-300/80 mb-8">
             Get instant, personalized career guidance. Here's how:
           </p>
 
           <ul className="space-y-6 text-left">
             {guidelines.map((item, index) => (
-              <li key={index} className="flex items-start space-x-4">
-                <div className="text-2xl pt-1">{item.icon}</div>
+              <li key={index} className="flex items-start space-x-4 p-4 rounded-lg hover:bg-green-900/20 transition-colors">
+                <div className="text-3xl pt-1">{item.icon}</div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-100">
+                  <h3 className="text-xl font-semibold text-green-300">
                     {item.title}
                   </h3>
-                  <p className="text-gray-400 mt-1">
+                  <p className="text-green-400/70 mt-1">
                     {item.description}
                   </p>
                 </div>
@@ -60,9 +54,8 @@ const Dashboard = () => {
             ))}
           </ul>
         </div>
-
-       
-        <div className="w-full h-xl">
+        
+        <div className="w-full">
           <ChatBox />
         </div>
         

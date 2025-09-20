@@ -4,32 +4,31 @@ import DashboardLayout from "./pages/DashboardLayout";
 import Homepage from "./pages/Homepage";
 import CareerPaths from "./pages/CareerPaths";
 import SkillsAssessment from "./pages/SkillsAssessment";
+import { AnalysisProvider } from './context/AnalysisContext';
 import './App.css';
-import { ThemeProvider } from "./contexts/Theme";
-import ThemeBtn from "./components/ThemeBtn";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import { ClerkProvider } from '@clerk/clerk-react'
 import Dashboard from "./pages/Dashboard";
 
-const ThemeButtonWrapper = () => {
-  const location = useLocation();
-  const showThemeButton = location.pathname.includes('/dashboard');
-  
-  return showThemeButton ? (
-    <div className="absolute mr-4 bottom-4 right-4 ">
-      <ThemeBtn />
-    </div>
-  ) : null;
-};
 
 function App() {
   return (
-    <ThemeProvider>
+    <ClerkProvider publishableKey="pk_test_ZW5qb3llZC1tb25rZmlzaC0wLmNsZXJrLmFjY291bnRzLmRldiQ">
+      <AnalysisProvider>
       <div className="relative min-h-screen bg-white dark:bg-gray-900  transition-colors duration-200">
-        <Router basename="GenAiPrototype">
-          <ThemeButtonWrapper />
+        <Router>
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard/*" element={<DashboardLayout />}>
+            <Route 
+                path="/dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <DashboardLayout />
+                  </ProtectedRoute>
+                }
+              >
               <Route index element={<Dashboard />} />
               <Route path="career-paths" element={<CareerPaths />} />
               <Route path="skills-assessment" element={<SkillsAssessment />} />
@@ -37,7 +36,8 @@ function App() {
           </Routes>
         </Router>
       </div>
-    </ThemeProvider>
+      </AnalysisProvider>
+      </ClerkProvider>
   );
 }
 

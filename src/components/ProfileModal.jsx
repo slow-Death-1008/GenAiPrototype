@@ -1,11 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { useTheme } from '../contexts/Theme';
+import React, { useState, useRef, useEffect } from 'react';
 
 const ProfileModal = ({ isOpen, onClose, currentName, currentImage, onSave }) => {
   const [name, setName] = useState(currentName || '');
   const [imagePreview, setImagePreview] = useState(currentImage || '');
   const fileInputRef = useRef(null);
-  const { themeMode } = useTheme();
+
+  useEffect(() => {
+      setName(currentName || '');
+      setImagePreview(currentImage || '');
+  }, [currentName, currentImage, isOpen]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -27,25 +30,30 @@ const ProfileModal = ({ isOpen, onClose, currentName, currentImage, onSave }) =>
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg w-96">
-        <h2 className="text-xl font-bold mb-4 dark:text-white">Edit Profile</h2>
+    <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center font-mono transition-opacity duration-300">
+      <div className="bg-black/50 backdrop-blur-lg border border-green-500/30 text-green-400 rounded-2xl shadow-2xl shadow-green-500/10 p-6 sm:p-8 w-full max-w-md m-4">
+        <h2 
+            className="text-2xl font-bold mb-6 text-center"
+            style={{ textShadow: '0 0 5px #39FF14, 0 0 10px #39FF14' }}
+        >
+            Edit Profile
+        </h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-6">
             <div className="flex justify-center mb-4">
               <div className="relative">
                 <img 
-                  src={imagePreview || 'https://via.placeholder.com/100'} 
+                  src={imagePreview || 'https://placehold.co/100x100/000000/39FF14?text=User'} 
                   alt="Profile" 
-                  className="w-24 h-24 rounded-full object-cover"
+                  className="w-24 h-24 rounded-full object-cover border-2 border-green-500/50"
                 />
                 <button
                   type="button"
                   onClick={() => fileInputRef.current.click()}
-                  className="absolute cursor-pointer bottom-0 right-0 bg-blue-600 p-2 rounded-full"
+                  className="absolute cursor-pointer bottom-0 right-0 bg-green-600 p-2 rounded-full hover:bg-green-500 transition-colors"
                 >
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
                   </svg>
                 </button>
               </div>
@@ -58,26 +66,26 @@ const ProfileModal = ({ isOpen, onClose, currentName, currentImage, onSave }) =>
               accept="image/*"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium dark:text-white">Name</label>
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-green-300 mb-2">Name</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full px-3 py-3 border border-green-500/30 bg-gray-900/50 text-green-300 placeholder-green-700/80 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
-          <div className="flex justify-end gap-2">
+          <div className="flex justify-end gap-4">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 cursor-pointer text-gray-600 dark:text-gray-300"
+              className="px-5 py-2 cursor-pointer text-green-400 hover:bg-gray-800 rounded-lg transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 cursor-pointer bg-blue-600 text-white rounded-md"
+              className="px-5 py-2 cursor-pointer bg-green-600 text-black font-bold rounded-lg hover:bg-green-500 transition-colors"
             >
               Save
             </button>

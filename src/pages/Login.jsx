@@ -1,104 +1,214 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import React from "react";
-import { useTheme } from "../contexts/Theme";
-import { FcGoogle } from "react-icons/fc";
-import bgVideo from '../assets/bganime2.mp4';
+import React, { useEffect } from 'react';
+import { SignIn, useUser } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-    const { themeMode } = useTheme();
-    
+  const { isSignedIn, isLoaded } = useUser();
+  const navigate = useNavigate(); // 2. Initialize useNavigate
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        if (email && password) {
-            navigate("/dashboard");
-        }
-    };
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      navigate('/dashboard'); // 3. Use navigate instead of window.location
+    }
+  }, [isSignedIn, isLoaded, navigate]);
 
-    const handleGoogleLogin = () => {
-        console.log("Attempting to sign in with Google...");
-        navigate("/dashboard");
-    };
-
+  // Show loading state while Clerk loads
+  if (!isLoaded) {
     return (
-        <div className="relative min-h-screen flex items-center justify-center bg-gray-950">
-            <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute w-full h-full object-cover opacity-50"
-            >
-                <source src={bgVideo} type="video/mp4" />
-            </video>
-
-            <div className="relative z-20 max-w-md w-full space-y-8">
-                <div className="bg-white/20 dark:bg-gray-800/40 backdrop-blur-md border border-white/30 dark:border-gray-600/30 rounded-xl shadow-lg p-8">
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
-                        Sign in to your account
-                    </h2>
-
-                    <form onSubmit={handleLogin} className="mt-8 space-y-6">
-                        <div className="rounded-md shadow-sm -space-y-px">
-                            <div>
-                                <input
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                    placeholder="Email address"
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-700/30 text-gray-900 dark:text-white placeholder-gray-500 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm backdrop-blur-sm"
-                                />
-                            </div>
-                            <div>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                    placeholder="Password"
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-700/30 text-gray-900 dark:text-white placeholder-gray-500 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm backdrop-blur-sm"
-                                />
-                            </div>
-                        </div>
-
-                        <div>
-                            <button
-                                type="submit"
-                                className="group cursor-pointer relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            >
-                                Sign In
-                            </button>
-                        </div>
-                    </form>
-
-                    
-                    <div className="mt-6 flex items-center justify-center">
-                        <div className="border-t border-gray-400 dark:border-gray-500 flex-grow"></div>
-                        <span className="mx-4 text-sm text-gray-600 dark:text-gray-300">OR</span>
-                        <div className="border-t border-gray-400 dark:border-gray-500 flex-grow"></div>
-                    </div>
-
-                    
-                    <div className="mt-6">
-                        <button
-                            type="button"
-                            onClick={handleGoogleLogin}
-                            className="w-full flex cursor-pointer items-center justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white/80 dark:bg-gray-700/50 text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
-                        >
-                            <FcGoogle className="h-5 w-5 mr-3" aria-hidden="true" />
-                            Continue with Google
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <div className="text-green-400 text-2xl font-mono animate-pulse">Loading...</div>
+      </div>
     );
+  }
+
+  // Don't render login if already signed in
+  if (isSignedIn) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <div className="text-green-400 text-xl font-mono">Redirecting to dashboard...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative min-h-screen flex items-center justify-center bg-black font-mono">
+      <div className="absolute inset-0 bg-black/60 -z-10"></div>
+
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 -z-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(rgba(57, 255, 20, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(57, 255, 20, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden -z-5">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-green-400 rounded-full opacity-30 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 3}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Scanning lines */}
+      <div className="absolute inset-0 -z-5">
+        <div
+          className="absolute w-full h-px bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-20"
+          style={{
+            animation: 'scan 10s linear infinite',
+          }}
+        />
+      </div>
+
+      {/* Main Login Container */}
+      <div className="relative z-20 w-full max-w-md p-4">
+        <div className="mb-8 text-center">
+          <h1 
+            className="text-4xl font-bold text-green-400 mb-2"
+            style={{ textShadow: '0 0 5px #39FF14, 0 0 10px #39FF14' }}
+          >
+            Welcome Back
+          </h1>
+          <p className="text-green-300/60 text-sm">
+            Sign in to elevate your potential
+          </p>
+        </div>
+
+        {/* Clerk SignIn Component with Custom Styling */}
+        <div className="flex justify-center">
+          <SignIn
+            appearance={{
+              variables: {
+                colorPrimary: '#39FF14',
+                colorBackground: 'rgba(0, 0, 0, 0.8)',
+                colorText: '#39FF14',
+                colorTextSecondary: 'rgba(57, 255, 20, 0.7)',
+                colorInputBackground: 'rgba(0, 0, 0, 0.6)',
+                colorInputText: '#39FF14',
+                borderRadius: '12px',
+                fontFamily: 'monospace',
+              },
+              elements: {
+                // Main card styling
+                card: {
+                  background: 'rgba(0, 0, 0, 0.8)',
+                  backdropFilter: 'blur(16px)',
+                  border: '1px solid rgba(57, 255, 20, 0.3)',
+                  borderRadius: '16px',
+                  boxShadow: '0 0 30px rgba(57, 255, 20, 0.1)',
+                },
+                // Header styling
+                headerTitle: {
+                  color: '#39FF14',
+                  fontSize: '24px',
+                  fontWeight: 'bold',
+                  textShadow: '0 0 5px #39FF14',
+                },
+                headerSubtitle: {
+                  color: 'rgba(57, 255, 20, 0.7)',
+                },
+                // Form elements
+                formButtonPrimary: {
+                  background: '#39FF14',
+                  color: '#000000',
+                  fontWeight: 'bold',
+                  border: 'none',
+                  boxShadow: '0 0 10px rgba(57, 255, 20, 0.3)',
+                  '&:hover': {
+                    background: '#2ECC40',
+                    boxShadow: '0 0 15px rgba(57, 255, 20, 0.5)',
+                  },
+                },
+                formFieldInput: {
+                  background: 'rgba(0, 0, 0, 0.6)',
+                  border: '1px solid rgba(57, 255, 20, 0.3)',
+                  color: '#39FF14',
+                  '&:focus': {
+                    borderColor: '#39FF14',
+                    boxShadow: '0 0 0 2px rgba(57, 255, 20, 0.2)',
+                  },
+                  '&::placeholder': {
+                    color: 'rgba(57, 255, 20, 0.5)',
+                  },
+                },
+                formFieldLabel: {
+                  color: '#39FF14',
+                  fontWeight: '500',
+                },
+                // Social buttons
+                socialButtonsBlockButton: {
+                  background: 'rgba(0, 0, 0, 0.6)',
+                  border: '1px solid rgba(57, 255, 20, 0.3)',
+                  color: '#39FF14',
+                  '&:hover': {
+                    background: 'rgba(57, 255, 20, 0.1)',
+                    borderColor: '#39FF14',
+                  },
+                },
+                // Links
+                footerActionLink: {
+                  color: '#39FF14',
+                  '&:hover': {
+                    color: '#2ECC40',
+                  },
+                },
+                // Divider
+                dividerLine: {
+                  background: 'rgba(57, 255, 20, 0.3)',
+                },
+                dividerText: {
+                  color: 'rgba(57, 255, 20, 0.7)',
+                },
+                // Other elements
+                alertText: {
+                  color: '#FF6B6B',
+                },
+                formResendCodeLink: {
+                  color: '#39FF14',
+                },
+                otpCodeFieldInput: {
+                  background: 'rgba(0, 0, 0, 0.6)',
+                  border: '1px solid rgba(57, 255, 20, 0.3)',
+                  color: '#39FF14',
+                },
+              },
+            }}
+            redirectUrl="/GenAiPrototype/dashboard"
+            signUpUrl="/GenAiPrototype/sign-up"
+          />
+        </div>
+
+        {/* Back to Home Link */}
+        <div className="mt-8 text-center">
+          <button
+            onClick={() => window.location.href = '/GenAiPrototype/'}
+            className="text-green-400/60 hover:text-green-400 transition-colors duration-200 text-sm font-mono underline"
+          >
+            ← Back to Homepage
+          </button>
+        </div>
+      </div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes scan {
+          0% { top: -2px; }
+          100% { top: 100vh; }
+        }
+      `}</style>
+    </div>
+  );
 };
 
 export default Login;
