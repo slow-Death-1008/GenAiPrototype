@@ -307,10 +307,10 @@ const Homepage = () => {
   const { isSignedIn, user, isLoaded } = useUser();
 
   const phrases = [
-    " Your Skills.",
-    " Your Career.",
-    " Your Future.",
-    " Your Potential.",
+    "Your  Skills.",
+    "Your  Career.",
+    "Your  Future.",
+    "Your  Potential.",
   ];
 
   // Show loading state while Clerk loads
