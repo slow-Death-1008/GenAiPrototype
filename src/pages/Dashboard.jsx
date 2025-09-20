@@ -1,43 +1,6 @@
 import React from 'react';
+import ChatBox from '../components/ChatBox';
 
-// --- Placeholder ChatBox Component ---
-// Styled to match the neon green theme.
-const ChatBox = () => {
-  const messages = [
-    { from: 'ai', text: 'Hello! How can I help you navigate your career path today?' },
-    { from: 'user', text: 'I\'m interested in jobs for a biology major.' },
-    { from: 'ai', text: 'Great! With a biology degree, you could explore roles in research, healthcare, conservation, or even biotech sales. Do any of those areas spark your interest?' },
-  ];
-
-  return (
-    <div className="flex flex-col h-[60vh] max-h-[700px] w-full bg-black/50 backdrop-blur-lg border border-green-500/30 rounded-2xl shadow-2xl shadow-green-500/10 overflow-hidden">
-      {/* Message Display Area */}
-      <div className="flex-1 p-6 space-y-4 overflow-y-auto">
-        {messages.map((msg, index) => (
-          <div key={index} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-xl ${msg.from === 'user' ? 'bg-green-500/20 text-green-300' : 'bg-gray-800/60 text-gray-300'}`}>
-              <p>{msg.text}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Input Area */}
-      <div className="p-4 bg-black/70 border-t border-green-500/30">
-        <div className="flex items-center space-x-4">
-          <input
-            type="text"
-            placeholder="Tell me what's on your mind..."
-            className="flex-1 p-3 bg-gray-900/50 border border-green-500/30 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none text-white"
-          />
-          <button className="px-5 py-3 bg-green-600 text-black font-bold rounded-lg hover:bg-green-500 transition-colors">
-            Send
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 
 // --- Main Dashboard Component ---
@@ -92,6 +55,9 @@ const Dashboard = () => {
               </li>
             ))}
           </ul>
+          <div className="w-full">
+                    <ChatBox />
+          </div>
         </div>
         
         <div className="w-full">
