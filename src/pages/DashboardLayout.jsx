@@ -228,7 +228,7 @@ const AnimatedBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
+      className="absolute -z-10 inset-0 w-full h-full pointer-events-none"
       style={{ zIndex: -5 }}
     />
   );
@@ -252,8 +252,6 @@ const DashboardLayout = () => {
             {/* Animated Background */}
             <AnimatedBackground />
             
-            {/* Original background overlay */}
-            <div className="absolute inset-0 bg-black/60 -z-10"></div>
 
             {/* Additional animated elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -8 }}>
