@@ -32,16 +32,6 @@ const Login = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-black font-mono">
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute w-full h-full object-cover opacity-20 -z-10"
-      >
-        <source src="https://videos.pexels.com/video-files/3251219/3251219-hd.mp4" type="video/mp4" />
-      </video>
       <div className="absolute inset-0 bg-black/60 -z-10"></div>
 
       {/* Animated Grid Background */}

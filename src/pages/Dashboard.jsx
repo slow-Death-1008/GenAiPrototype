@@ -62,16 +62,6 @@ const Dashboard = () => {
 
   return (
     <main className="relative min-h-screen w-full font-mono text-green-400 bg-black">
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-20 -z-10"
-      >
-        <source src="https://videos.pexels.com/video-files/853875/853875-hd.mp4" type="video/mp4" />
-      </video>
       <div className="absolute inset-0 bg-black/60 -z-10"></div>
 
       {/* Content Container */}
