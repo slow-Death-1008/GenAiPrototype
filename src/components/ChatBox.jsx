@@ -19,7 +19,7 @@ const getGroqChatCompletion = async (userMessage, analysisData) => {
         : "The user has not provided a resume yet.";
 
     const prompt = `
-        You are a helpful career assistant integrated into a website called "Elevare".
+        You are a helpful career assistant integrated into a website called "Elevate".
         Your goal is to provide supportive and insightful career guidance.
         ${resumeSummary}
 
