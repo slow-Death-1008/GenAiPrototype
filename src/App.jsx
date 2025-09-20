@@ -16,7 +16,7 @@ function App() {
     <ClerkProvider publishableKey="pk_test_ZW5qb3llZC1tb25rZmlzaC0wLmNsZXJrLmFjY291bnRzLmRldiQ">
       <AnalysisProvider>
       <div className="relative min-h-screen bg-white dark:bg-gray-900  transition-colors duration-200">
-        <Router basename="GenAiPrototype">
+        <Router>
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
